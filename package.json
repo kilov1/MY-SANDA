@@ -1,0 +1,23 @@
+{
+  "name": "my-sanda-forum",
+  "version": "1.0.0",
+  "description": "校园论坛网站 - 使用 HTML、Tailwind CSS、JavaScript 和 Supabase 构建",
+  "main": "index.html",
+  "scripts": {
+    "start": "http-server -p 8000 -o",
+    "dev": "http-server -p 8000",
+    "build": "echo 'No build step required for this project'"
+  },
+  "keywords": [
+    "forum",
+    "campus",
+    "community",
+    "supabase",
+    "tailwind"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  }
+}

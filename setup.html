@@ -1,0 +1,153 @@
+<!-- 
+    MY SANDA 校园论坛 - Supabase 配置说明
+    
+    请按照以下步骤配置你的 Supabase 项目：
+-->
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MY SANDA - Supabase 配置</title>
+    <script>
+    (function(){var p=location.pathname;if(p&&p!=='/'&&p!=='/index.html'){var base=p.endsWith('/')?p:p.replace(/\/[^/]*$/,'')+'/';if(base!=='/'){var b=document.createElement('base');b.href=base;document.head.insertBefore(b,document.head.firstChild);}}
+    })();
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gradient-to-br from-blue-50 to-indigo-100 min-h-screen p-4">
+    <div class="max-w-2xl mx-auto py-12">
+        <div class="bg-white rounded-lg shadow-lg p-8">
+            <h1 class="text-3xl font-bold text-gray-800 mb-2">MY SANDA 配置向导</h1>
+            <p class="text-gray-600 mb-8">按照以下步骤配置你的 Supabase 项目</p>
+
+            <div class="space-y-6">
+                <!-- 步骤 1 -->
+                <div class="border-l-4 border-blue-500 pl-6 py-4">
+                    <h2 class="text-xl font-bold text-gray-800 mb-2">步骤 1：创建 Supabase 项目</h2>
+                    <ol class="list-decimal list-inside space-y-2 text-gray-700">
+                        <li>访问 <a href="https://supabase.com" target="_blank" class="text-blue-500 hover:underline">https://supabase.com</a></li>
+                        <li>点击 "Sign Up" 注册账户</li>
+                        <li>点击 "New Project" 创建新项目</li>
+                        <li>填写项目名称（如 "my-sanda"）</li>
+                        <li>设置数据库密码</li>
+                        <li>选择地区（推荐选择离你最近的）</li>
+                        <li>点击 "Create new project" 并等待完成</li>
+                    </ol>
+                </div>
+
+                <!-- 步骤 2 -->
+                <div class="border-l-4 border-green-500 pl-6 py-4">
+                    <h2 class="text-xl font-bold text-gray-800 mb-2">步骤 2：获取 API 密钥</h2>
+                    <ol class="list-decimal list-inside space-y-2 text-gray-700">
+                        <li>进入你的项目</li>
+                        <li>点击左侧菜单 "Settings"（设置）</li>
+                        <li>选择 "API"</li>
+                        <li>复制 "Project URL"（看起来像 <code class="bg-gray-100 px-2 py-1 rounded">https://xxxxx.supabase.co</code>）</li>
+                        <li>复制 "anon public" 密钥</li>
+                    </ol>
+                </div>
+
+                <!-- 步骤 3 -->
+                <div class="border-l-4 border-purple-500 pl-6 py-4">
+                    <h2 class="text-xl font-bold text-gray-800 mb-2">步骤 3：关闭邮箱验证</h2>
+                    <ol class="list-decimal list-inside space-y-2 text-gray-700">
+                        <li>在 Supabase 项目中，点击左侧菜单 "Authentication"</li>
+                        <li>选择 "Providers"</li>
+                        <li>找到 "Email" 提供商</li>
+                        <li>关闭 "Confirm email" 开关</li>
+                        <li>点击 "Save" 保存</li>
+                    </ol>
+                </div>
+
+                <!-- 步骤 4 -->
+                <div class="border-l-4 border-orange-500 pl-6 py-4">
+                    <h2 class="text-xl font-bold text-gray-800 mb-2">步骤 4：配置项目文件</h2>
+                    <ol class="list-decimal list-inside space-y-2 text-gray-700">
+                        <li>打开项目中的 <code class="bg-gray-100 px-2 py-1 rounded">js/app.js</code> 文件</li>
+                        <li>找到第 1-2 行的配置：
+                            <pre class="bg-gray-100 p-3 rounded mt-2 text-sm overflow-x-auto"><code>const SUPABASE_URL = 'https://your-project.supabase.co';
+const SUPABASE_KEY = 'your-anon-key';</code></pre>
+                        </li>
+                        <li>替换为你的实际值：
+                            <pre class="bg-gray-100 p-3 rounded mt-2 text-sm overflow-x-auto"><code>const SUPABASE_URL = 'https://xxxxx.supabase.co';
+const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...';</code></pre>
+                        </li>
+                        <li>保存文件</li>
+                    </ol>
+                </div>
+
+                <!-- 步骤 5 -->
+                <div class="border-l-4 border-red-500 pl-6 py-4">
+                    <h2 class="text-xl font-bold text-gray-800 mb-2">步骤 5：启动项目</h2>
+                    <p class="text-gray-700 mb-3">选择以下任一方式启动项目：</p>
+                    
+                    <div class="space-y-3">
+                        <div class="bg-gray-50 p-4 rounded">
+                            <p class="font-semibold text-gray-800 mb-2">方式 A：Python（推荐）</p>
+                            <pre class="bg-gray-800 text-gray-100 p-3 rounded text-sm overflow-x-auto"><code>python -m http.server 8000</code></pre>
+                            <p class="text-gray-600 text-sm mt-2">然后在浏览器打开：<code class="bg-gray-100 px-2 py-1 rounded">http://localhost:8000</code></p>
+                        </div>
+
+                        <div class="bg-gray-50 p-4 rounded">
+                            <p class="font-semibold text-gray-800 mb-2">方式 B：Node.js</p>
+                            <pre class="bg-gray-800 text-gray-100 p-3 rounded text-sm overflow-x-auto"><code>npm install
+npm start</code></pre>
+                        </div>
+
+                        <div class="bg-gray-50 p-4 rounded">
+                            <p class="font-semibold text-gray-800 mb-2">方式 C：Windows 用户</p>
+                            <p class="text-gray-700">双击运行 <code class="bg-gray-100 px-2 py-1 rounded">start-server.bat</code> 文件</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 完成 -->
+                <div class="bg-green-50 border-l-4 border-green-500 pl-6 py-4">
+                    <h2 class="text-xl font-bold text-green-800 mb-2">✅ 完成！</h2>
+                    <p class="text-green-700">现在你可以：</p>
+                    <ul class="list-disc list-inside text-green-700 mt-2 space-y-1">
+                        <li>访问首页</li>
+                        <li>注册新账户</li>
+                        <li>登录</li>
+                        <li>测试忘记密码功能</li>
+                        <li>查看密码强度反馈</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- 快速链接 -->
+            <div class="mt-8 pt-8 border-t border-gray-200">
+                <h3 class="text-lg font-bold text-gray-800 mb-4">快速链接</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <a href="https://supabase.com" target="_blank" class="block p-4 bg-blue-50 rounded-lg hover:bg-blue-100 transition">
+                        <p class="font-semibold text-blue-800">Supabase 官网</p>
+                        <p class="text-sm text-blue-600">https://supabase.com</p>
+                    </a>
+                    <a href="https://supabase.com/docs" target="_blank" class="block p-4 bg-purple-50 rounded-lg hover:bg-purple-100 transition">
+                        <p class="font-semibold text-purple-800">Supabase 文档</p>
+                        <p class="text-sm text-purple-600">https://supabase.com/docs</p>
+                    </a>
+                    <a href="./index.html" class="block p-4 bg-green-50 rounded-lg hover:bg-green-100 transition">
+                        <p class="font-semibold text-green-800">返回首页</p>
+                        <p class="text-sm text-green-600">index.html</p>
+                    </a>
+                    <a href="./README.md" class="block p-4 bg-orange-50 rounded-lg hover:bg-orange-100 transition">
+                        <p class="font-semibold text-orange-800">查看文档</p>
+                        <p class="text-sm text-orange-600">README.md</p>
+                    </a>
+                </div>
+            </div>
+
+            <!-- 需要帮助 -->
+            <div class="mt-8 p-4 bg-yellow-50 rounded-lg border border-yellow-200">
+                <p class="text-yellow-800">
+                    <span class="font-semibold">💡 提示：</span>
+                    如果遇到问题，请检查浏览器控制台（按 F12）查看错误信息。
+                </p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
