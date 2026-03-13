@@ -8,12 +8,11 @@
     (function(){
         var p=location.pathname;
         if(p&&p!=='/'&&p!=='/index.html'){
-            var base=p.endsWith('/')?p:p.replace(/\/[^/]*$/,'')+'/';
-            if(base!=='/'){
-                var b=document.createElement('base');
-                b.href=base;
-                document.head.insertBefore(b,document.head.firstChild);
-            }
+            var parts=p.split('/').filter(Boolean);
+            var base=parts.length>0?'/'+parts[0]+'/':'/';
+            var b=document.createElement('base');
+            b.href=base;
+            document.head.insertBefore(b,document.head.firstChild);
         }
     })();
     </script>
@@ -300,7 +299,8 @@
 
     <script src="./js/local-api.js"></script>
     <script src="./js/supabase-config.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+    <!-- 使用 cdnjs 避免部分浏览器的 Tracking Prevention 拦截 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/supabase/2.39.3/umd/supabase.min.js" crossorigin="anonymous"></script>
     <script src="./js/supabase-init.js"></script>
     <script src="./js/supabase-api.js"></script>
     <script src="./js/content-filter.js"></script>

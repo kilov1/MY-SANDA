@@ -1,0 +1,14 @@
+# Netlify 部署配置
+[build]
+  publish = "."
+  command = ""
+
+# 环境变量可在 Netlify 控制台添加（可选，用于构建时注入 Supabase 配置）
+# SUPABASE_URL = "https://xxx.supabase.co"
+# SUPABASE_ANON_KEY = "your-anon-key"
+# 若使用环境变量注入，需要添加 build 脚本；否则直接在 js/supabase-config.js 中填写
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
