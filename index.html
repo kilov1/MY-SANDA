@@ -10,6 +10,7 @@
     <script src="./js/supabase-init.js"></script>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous">
 </head>
 <body>
     <nav class="navbar sticky top-0 z-50">
@@ -152,14 +153,14 @@
                             </div>
                             <div class="text-center md:text-right">
                                 <p id="weatherDetailCity" class="text-xl font-bold text-gray-800">上海</p>
-                                <p id="weatherDetailDate" class="text-sm text-gray-500">2026年3月13日</p>
+                                <p id="weatherDetailDate" class="text-sm text-gray-500">--</p>
                             </div>
                         </div>
                         <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                            <div class="bg-blue-50 rounded-lg p-4 text-center"><p class="text-sm text-gray-600">体感温度</p><p class="text-lg font-bold text-gray-800">17°C</p></div>
-                            <div class="bg-blue-50 rounded-lg p-4 text-center"><p class="text-sm text-gray-600">湿度</p><p class="text-lg font-bold text-gray-800">45%</p></div>
-                            <div class="bg-blue-50 rounded-lg p-4 text-center"><p class="text-sm text-gray-600">风速</p><p class="text-lg font-bold text-gray-800">微风</p></div>
-                            <div class="bg-blue-50 rounded-lg p-4 text-center"><p class="text-sm text-gray-600">空气质量</p><p class="text-lg font-bold text-gray-800">良</p></div>
+                            <div class="bg-blue-50 rounded-lg p-4 text-center"><p class="text-sm text-gray-600">体感温度</p><p id="weatherDetailFeelsLike" class="text-lg font-bold text-gray-800">--</p></div>
+                            <div class="bg-blue-50 rounded-lg p-4 text-center"><p class="text-sm text-gray-600">湿度</p><p id="weatherDetailHumidity" class="text-lg font-bold text-gray-800">--</p></div>
+                            <div class="bg-blue-50 rounded-lg p-4 text-center"><p class="text-sm text-gray-600">风速</p><p id="weatherDetailWind" class="text-lg font-bold text-gray-800">--</p></div>
+                            <div class="bg-blue-50 rounded-lg p-4 text-center"><p class="text-sm text-gray-600">空气质量</p><p id="weatherDetailAirQuality" class="text-lg font-bold text-gray-800">--</p></div>
                         </div>
                     </div>
                 </div>
@@ -237,13 +238,143 @@
 
     <div id="feedbackPage" class="page"><div class="container-main py-12"><div class="max-w-3xl mx-auto"><div class="bg-gradient-to-br from-white to-blue-50 rounded-2xl p-8 md:p-12 shadow-lg border border-blue-100 mb-8"><h2 class="text-3xl md:text-4xl font-bold text-center mb-4 bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">建议改进</h2><p class="text-center text-gray-600 text-lg md:text-xl leading-relaxed font-light">您的每一条建议都是我们前进的动力</p><div class="mt-8 pt-8 border-t border-blue-200"><p class="text-center text-gray-700 leading-relaxed text-base md:text-lg">欢迎对网站提出宝贵意见和建议，帮助我们不断改进，为大家提供更好的服务。</p></div></div><div class="flex justify-between items-center mb-8"><button class="back-btn back-to-home">← 返回</button><button id="publishFeedbackBtn" class="bg-gradient-to-r from-blue-500 to-blue-600 text-white px-6 py-2 rounded-lg font-medium hover:shadow-lg transition-shadow text-sm md:text-base">发布建议</button></div><div class="bg-white rounded-2xl p-6 md:p-8 shadow-lg border border-blue-100 min-h-96"><div id="feedbackList" class="space-y-6"></div></div></div></div></div>
 
-    <div id="loginPage" class="page"><div class="min-h-screen flex items-center justify-center py-12 px-4"><div class="w-full max-w-md bg-white rounded-lg shadow-lg p-8 fade-in"><button class="back-btn mb-6 w-full back-to-home">← 返回</button><h2 class="text-3xl font-bold text-gray-800 mb-2">登录</h2><p class="text-gray-600 mb-8">欢迎回到 MY SANDA</p><form id="loginForm" novalidate><div class="mb-6"><label class="block text-gray-700 font-medium mb-2">邮箱/账号</label><input type="text" id="loginEmail" class="form-input w-full px-4 py-3 rounded-lg" placeholder="输入任意格式如 xxx@xxx.com" required></div><div class="mb-6"><label class="block text-gray-700 font-medium mb-2">密码</label><input type="password" id="loginPassword" class="form-input w-full px-4 py-3 rounded-lg" placeholder="输入密码" required></div><div class="text-right mb-6"><span class="link-text text-sm" id="forgotPasswordLink">忘记密码？</span></div><button type="submit" class="btn-primary w-full py-3 rounded-lg text-white font-medium mb-4">登录</button></form><div class="text-center"><span class="text-gray-600">还没有账号？</span><span class="link-text ml-2" id="goToRegister">立即注册</span></div></div></div></div>
+    <div id="loginPage" class="page auth-page">
+        <div class="auth-page-bg flex items-center justify-center py-12 px-4 min-h-screen">
+            <div class="auth-glass-card fade-in">
+                <button class="auth-back-btn back-to-home" type="button">← 返回</button>
+                <h2 class="auth-title">登录</h2>
+                <p class="auth-subtitle">欢迎回到 MY SANDA</p>
+                <form id="loginForm" novalidate class="auth-form">
+                    <div class="auth-field">
+                        <label class="auth-label">邮箱/账号</label>
+                        <div class="auth-input-wrap">
+                            <i class="fa fa-envelope auth-icon" aria-hidden="true"></i>
+                            <input type="text" id="loginEmail" class="auth-input" placeholder="输入任意格式如 xxx@xxx.com" required>
+                        </div>
+                    </div>
+                    <div class="auth-field">
+                        <label class="auth-label">密码</label>
+                        <div class="auth-input-wrap">
+                            <i class="fa fa-lock auth-icon" aria-hidden="true"></i>
+                            <input type="password" id="loginPassword" class="auth-input" placeholder="输入密码" required>
+                        </div>
+                    </div>
+                    <div class="text-right mb-6"><span class="auth-link" id="forgotPasswordLink">忘记密码？</span></div>
+                    <button type="submit" class="auth-submit-btn">登录 <i class="fa fa-arrow-right auth-btn-icon" aria-hidden="true"></i></button>
+                </form>
+                <div class="auth-footer"><span class="auth-footer-text">还没有账号？</span><span class="auth-link ml-2" id="goToRegister">立即注册</span></div>
+            </div>
+        </div>
+    </div>
 
-    <div id="registerPage" class="page"><div class="min-h-screen flex items-center justify-center py-12 px-4"><div class="w-full max-w-md bg-white rounded-lg shadow-lg p-8 fade-in"><button class="back-btn mb-6 w-full back-to-home">← 返回</button><h2 class="text-3xl font-bold text-gray-800 mb-2">注册</h2><p class="text-gray-600 mb-8">加入 MY SANDA 社区</p><form id="registerForm" novalidate><div class="mb-6"><label class="block text-gray-700 font-medium mb-2">邮箱/账号</label><input type="text" id="registerEmail" class="form-input w-full px-4 py-3 rounded-lg" placeholder="输入任意格式如 xxx@xxx.com" required></div><div class="mb-6"><label class="block text-gray-700 font-medium mb-2">昵称</label><input type="text" id="registerNickname" class="form-input w-full px-4 py-3 rounded-lg" placeholder="输入昵称" required></div><div class="mb-6"><label class="block text-gray-700 font-medium mb-2">密码</label><input type="password" id="registerPassword" class="form-input w-full px-4 py-3 rounded-lg" placeholder="设置密码" required><div class="password-strength" id="passwordStrength"></div></div><div class="mb-6"><label class="block text-gray-700 font-medium mb-2">重复密码</label><input type="password" id="registerConfirmPassword" class="form-input w-full px-4 py-3 rounded-lg" placeholder="再次输入密码" required><div class="password-strength" id="confirmPasswordStrength"></div></div><div class="mb-6"><label class="block text-gray-700 font-medium mb-2">头像上传（可选）</label><input type="file" id="registerAvatar" accept="image/*" class="w-full px-4 py-3 border-2 border-gray-200 rounded-lg focus:border-blue-500 focus:outline-none"></div><div class="mb-6"><label class="flex items-start gap-2 cursor-pointer"><input type="checkbox" id="agreeTerms" class="mt-1 w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500" required><span class="text-sm text-gray-600">我已阅读并同意 <a href="agreement.html" target="_blank" class="link-text text-blue-600">用户协议与隐私政策</a></span></label></div><button type="submit" class="btn-primary w-full py-3 rounded-lg text-white font-medium mb-4">注册</button></form><div class="text-center"><span class="text-gray-600">已有账号？</span><span class="link-text ml-2" id="goToLogin">立即登录</span></div></div></div></div>
+    <div id="registerPage" class="page auth-page">
+        <div class="auth-page-bg flex items-center justify-center py-12 px-4 min-h-screen">
+            <div class="auth-glass-card auth-glass-card-wide fade-in">
+                <button class="auth-back-btn back-to-home" type="button">← 返回</button>
+                <h2 class="auth-title">注册</h2>
+                <p class="auth-subtitle">加入 MY SANDA 社区</p>
+                <form id="registerForm" novalidate class="auth-form">
+                    <div class="auth-form-grid">
+                        <div class="auth-field">
+                            <label class="auth-label">邮箱/账号</label>
+                            <div class="auth-input-wrap">
+                                <i class="fa fa-envelope auth-icon" aria-hidden="true"></i>
+                                <input type="text" id="registerEmail" class="auth-input" placeholder="输入任意格式如 xxx@xxx.com" required>
+                            </div>
+                        </div>
+                        <div class="auth-field">
+                            <label class="auth-label">昵称</label>
+                            <div class="auth-input-wrap">
+                                <i class="fa fa-user auth-icon" aria-hidden="true"></i>
+                                <input type="text" id="registerNickname" class="auth-input" placeholder="输入昵称" required>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="auth-form-grid">
+                        <div class="auth-field">
+                            <label class="auth-label">密码</label>
+                            <div class="auth-input-wrap">
+                                <i class="fa fa-lock auth-icon" aria-hidden="true"></i>
+                                <input type="password" id="registerPassword" class="auth-input" placeholder="设置密码" required>
+                            </div>
+                            <div class="password-strength" id="passwordStrength"></div>
+                        </div>
+                        <div class="auth-field">
+                            <label class="auth-label">重复密码</label>
+                            <div class="auth-input-wrap">
+                                <i class="fa fa-lock auth-icon" aria-hidden="true"></i>
+                                <input type="password" id="registerConfirmPassword" class="auth-input" placeholder="再次输入密码" required>
+                            </div>
+                            <div class="password-strength" id="confirmPasswordStrength"></div>
+                        </div>
+                    </div>
+                    <div class="auth-field">
+                        <label class="auth-label">头像上传（可选）</label>
+                        <input type="file" id="registerAvatar" accept="image/*" class="auth-file-input">
+                    </div>
+                    <div class="auth-field">
+                        <label class="auth-checkbox-wrap">
+                            <input type="checkbox" id="agreeTerms" class="auth-checkbox" required>
+                            <span class="auth-checkbox-text">我已阅读并同意 <a href="agreement.html" target="_blank" class="auth-link">用户协议与隐私政策</a></span>
+                        </label>
+                    </div>
+                    <button type="submit" class="auth-submit-btn">注册 <i class="fa fa-arrow-right auth-btn-icon" aria-hidden="true"></i></button>
+                </form>
+                <div class="auth-footer"><span class="auth-footer-text">已有账号？</span><span class="auth-link ml-2" id="goToLogin">立即登录</span></div>
+            </div>
+        </div>
+    </div>
 
-    <div id="forgotPasswordPage" class="page"><div class="min-h-screen flex items-center justify-center py-12 px-4"><div class="w-full max-w-md bg-white rounded-lg shadow-lg p-8 fade-in"><button class="back-btn mb-6 w-full back-to-home">← 返回</button><h2 class="text-3xl font-bold text-gray-800 mb-2">忘记密码</h2><p class="text-gray-600 mb-8">请输入注册时的邮箱，通过该邮箱重置您的密码。</p><form id="forgotPasswordForm" novalidate><div class="mb-6"><label class="block text-gray-700 font-medium mb-2">邮箱/账号</label><input type="text" id="forgotEmail" class="form-input w-full px-4 py-3 rounded-lg" placeholder="输入注册时的邮箱如 xxx@xxx.com" required></div><button type="submit" class="btn-primary w-full py-3 rounded-lg text-white font-medium mb-4">下一步</button></form><div class="text-center"><span class="link-text text-sm cursor-pointer" id="backToLogin">返回登录</span></div></div></div></div>
+    <div id="forgotPasswordPage" class="page auth-page">
+        <div class="auth-page-bg flex items-center justify-center py-12 px-4 min-h-screen">
+            <div class="auth-glass-card fade-in">
+                <button class="auth-back-btn back-to-home" type="button">← 返回</button>
+                <h2 class="auth-title">忘记密码</h2>
+                <p class="auth-subtitle">请输入注册时的邮箱，通过该邮箱重置您的密码。</p>
+                <form id="forgotPasswordForm" novalidate class="auth-form">
+                    <div class="auth-field">
+                        <label class="auth-label">邮箱/账号</label>
+                        <div class="auth-input-wrap">
+                            <i class="fa fa-envelope auth-icon" aria-hidden="true"></i>
+                            <input type="text" id="forgotEmail" class="auth-input" placeholder="输入注册时的邮箱如 xxx@xxx.com" required>
+                        </div>
+                    </div>
+                    <button type="submit" class="auth-submit-btn">下一步 <i class="fa fa-arrow-right auth-btn-icon" aria-hidden="true"></i></button>
+                </form>
+                <div class="auth-footer"><span class="auth-link cursor-pointer" id="backToLogin">返回登录</span></div>
+            </div>
+        </div>
+    </div>
 
-    <div id="resetPasswordPage" class="page"><div class="min-h-screen flex items-center justify-center py-12 px-4"><div class="w-full max-w-md bg-white rounded-lg shadow-lg p-8 fade-in"><button class="back-btn mb-6 w-full back-to-home">← 返回</button><h2 class="text-3xl font-bold text-gray-800 mb-2">重置密码</h2><p class="text-gray-600 mb-8">设置你的新密码</p><form id="resetPasswordForm" novalidate><div class="mb-6"><label class="block text-gray-700 font-medium mb-2">新密码</label><input type="password" id="resetPassword" class="form-input w-full px-4 py-3 rounded-lg" placeholder="输入新密码" required><div class="password-strength" id="resetPasswordStrength"></div></div><div class="mb-6"><label class="block text-gray-700 font-medium mb-2">重复密码</label><input type="password" id="resetConfirmPassword" class="form-input w-full px-4 py-3 rounded-lg" placeholder="再次输入密码" required><div class="password-strength" id="resetConfirmPasswordStrength"></div></div><button type="submit" class="btn-primary w-full py-3 rounded-lg text-white font-medium mb-4">重置密码</button></form><div class="text-center"><span class="link-text text-sm cursor-pointer" id="backToLoginFromReset">返回登录</span></div></div></div></div>
+    <div id="resetPasswordPage" class="page auth-page">
+        <div class="auth-page-bg flex items-center justify-center py-12 px-4 min-h-screen">
+            <div class="auth-glass-card fade-in">
+                <button class="auth-back-btn back-to-home" type="button">← 返回</button>
+                <h2 class="auth-title">重置密码</h2>
+                <p class="auth-subtitle">设置你的新密码</p>
+                <form id="resetPasswordForm" novalidate class="auth-form">
+                    <div class="auth-field">
+                        <label class="auth-label">新密码</label>
+                        <div class="auth-input-wrap">
+                            <i class="fa fa-lock auth-icon" aria-hidden="true"></i>
+                            <input type="password" id="resetPassword" class="auth-input" placeholder="输入新密码" required>
+                        </div>
+                        <div class="password-strength" id="resetPasswordStrength"></div>
+                    </div>
+                    <div class="auth-field">
+                        <label class="auth-label">重复密码</label>
+                        <div class="auth-input-wrap">
+                            <i class="fa fa-lock auth-icon" aria-hidden="true"></i>
+                            <input type="password" id="resetConfirmPassword" class="auth-input" placeholder="再次输入密码" required>
+                        </div>
+                        <div class="password-strength" id="resetConfirmPasswordStrength"></div>
+                    </div>
+                    <button type="submit" class="auth-submit-btn">重置密码 <i class="fa fa-arrow-right auth-btn-icon" aria-hidden="true"></i></button>
+                </form>
+                <div class="auth-footer"><span class="auth-link cursor-pointer" id="backToLoginFromReset">返回登录</span></div>
+            </div>
+        </div>
+    </div>
 
     <div id="profilePage" class="page">
         <div class="container-main py-12">
@@ -390,7 +521,7 @@
     <!-- JSZip 用于非图片文件打包为 zip 后上传，安装: npm i jszip -->
     <script src="https://cdn.jsdelivr.net/npm/jszip@3/dist/jszip.min.js"></script>
     <script src="./js/default-avatars.js"></script>
-    <script src="./js/local-api.js"></script>
+    <script src="./js/image-compress.js"></script>
     <script src="./js/supabase-api.js"></script>
     <script src="./js/content-filter.js"></script>
     <script src="./js/home-carousel.js"></script>

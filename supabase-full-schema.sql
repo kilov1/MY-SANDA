@@ -84,7 +84,14 @@ CREATE TABLE IF NOT EXISTS public.suggestions (
     created_at TIMESTAMPTZ DEFAULT NOW()
 );
 
--- 9. RLS 策略
+-- 9. 我的课表（按用户存储，刷新不丢失）
+CREATE TABLE IF NOT EXISTS public.user_schedules (
+    user_id UUID PRIMARY KEY REFERENCES auth.users(id) ON DELETE CASCADE,
+    schedule_data JSONB DEFAULT '{}'::jsonb,
+    updated_at TIMESTAMPTZ DEFAULT NOW()
+);
+
+-- 10. RLS 策略
 ALTER TABLE public.profiles ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.study_materials ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.campus_posts ENABLE ROW LEVEL SECURITY;
@@ -92,6 +99,7 @@ ALTER TABLE public.lost_items ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.secondhand ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.questions ENABLE ROW LEVEL SECURITY;
 ALTER TABLE public.suggestions ENABLE ROW LEVEL SECURITY;
+ALTER TABLE public.user_schedules ENABLE ROW LEVEL SECURITY;
 
 -- profiles
 DROP POLICY IF EXISTS "profiles_read" ON public.profiles;
@@ -157,7 +165,15 @@ DROP POLICY IF EXISTS "suggestions_insert" ON public.suggestions;
 CREATE POLICY "suggestions_select" ON public.suggestions FOR SELECT USING (true);
 CREATE POLICY "suggestions_insert" ON public.suggestions FOR INSERT WITH CHECK (auth.uid() = user_id);
 
--- 10. 新用户注册时自动创建 profile
+-- user_schedules（用户只能读写自己的课表）
+DROP POLICY IF EXISTS "user_schedules_select" ON public.user_schedules;
+DROP POLICY IF EXISTS "user_schedules_insert" ON public.user_schedules;
+DROP POLICY IF EXISTS "user_schedules_update" ON public.user_schedules;
+CREATE POLICY "user_schedules_select" ON public.user_schedules FOR SELECT USING (auth.uid() = user_id);
+CREATE POLICY "user_schedules_insert" ON public.user_schedules FOR INSERT WITH CHECK (auth.uid() = user_id);
+CREATE POLICY "user_schedules_update" ON public.user_schedules FOR UPDATE USING (auth.uid() = user_id);
+
+-- 11. 新用户注册时自动创建 profile
 CREATE OR REPLACE FUNCTION public.handle_new_user()
 RETURNS TRIGGER AS $$
 BEGIN
@@ -180,6 +196,6 @@ CREATE TRIGGER on_auth_user_created
   AFTER INSERT ON auth.users
   FOR EACH ROW EXECUTE FUNCTION public.handle_new_user();
 
--- 11. Storage 存储桶（在 Dashboard → Storage 中手动创建）：
+-- 12. Storage 存储桶（在 Dashboard → Storage 中手动创建）：
 --     - avatars (Public) 头像
 --     - publish-files (Public) 发布图片/文件
