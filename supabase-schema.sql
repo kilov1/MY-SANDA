@@ -10,6 +10,7 @@ CREATE TABLE IF NOT EXISTS public.profiles (
     email TEXT NOT NULL,
     nickname TEXT NOT NULL,
     avatar INTEGER DEFAULT 5,
+    avatar_url TEXT,
     gender TEXT,
     birthday DATE,
     school TEXT,
