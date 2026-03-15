@@ -5,9 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>用户协议与隐私政策 - MY SANDA</title>
     <style>
-        /* 基础重置 */
         * { margin: 0; padding: 0; box-sizing: border-box; }
-
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'PingFang SC', 'Microsoft YaHei', sans-serif;
             background: #fff;
@@ -15,15 +13,7 @@
             line-height: 1.7;
             min-height: 100vh;
         }
-
-        /* 主容器：最大宽度、居中、左右留白 */
-        .container {
-            max-width: 720px;
-            margin: 0 auto;
-            padding: 24px 16px 48px;
-        }
-
-        /* 返回按钮：与项目 back-btn 风格一致 */
+        .container { max-width: 720px; margin: 0 auto; padding: 24px 16px 48px; }
         .back-btn {
             display: inline-block;
             padding: 10px 20px;
@@ -42,49 +32,20 @@
             transform: translateY(-2px);
             box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
         }
-
-        /* 页面标题 */
-        .page-title {
-            font-size: 24px;
-            font-weight: 700;
-            color: #1a1a1a;
-            margin-bottom: 32px;
-            text-align: center;
-        }
-
-        /* 区块：免责声明、用户政策、隐私政策 */
-        .section {
-            margin-bottom: 40px;
-        }
+        .page-title { font-size: 24px; font-weight: 700; color: #1a1a1a; margin-bottom: 16px; text-align: center; }
+        .meta-info { font-size: 14px; color: #666; margin-bottom: 32px; text-align: center; }
+        .intro { margin-bottom: 32px; font-size: 15px; color: #333; }
+        .section { margin-bottom: 40px; }
         .section:last-child { margin-bottom: 0; }
-
-        /* 区块标题 */
-        .section-title {
-            font-size: 18px;
-            font-weight: 700;
-            color: #1a1a1a;
-            margin-bottom: 16px;
-            padding-bottom: 8px;
-            border-bottom: 2px solid #e5e5e5;
-        }
-
-        /* 条款列表 */
-        .section-content {
-            font-size: 15px;
-            color: #1a1a1a;
-        }
-        .section-content p {
-            margin-bottom: 12px;
-        }
-        .section-content p:last-child {
-            margin-bottom: 0;
-        }
-        .section-content strong {
-            font-weight: 600;
-            color: #1a1a1a;
-        }
-
-        /* 移动端适配 */
+        .section-title { font-size: 18px; font-weight: 700; color: #1a1a1a; margin-bottom: 16px; padding-bottom: 8px; border-bottom: 2px solid #e5e5e5; }
+        .section-content { font-size: 15px; color: #1a1a1a; }
+        .section-content p { margin-bottom: 12px; }
+        .section-content p:last-child { margin-bottom: 0; }
+        .section-content strong { font-weight: 600; color: #1a1a1a; }
+        .section-content ul { margin: 12px 0 12px 24px; list-style: none; }
+        .section-content ul li { margin-bottom: 8px; padding-left: 1em; position: relative; }
+        .section-content ul li::before { content: '◦'; position: absolute; left: 0; }
+        .section-content .sub-item { margin-left: 1.5em; margin-top: 4px; }
         @media (max-width: 480px) {
             .container { padding: 16px 12px 40px; }
             .page-title { font-size: 20px; margin-bottom: 24px; }
@@ -96,43 +57,101 @@
 </head>
 <body>
     <div class="container">
-        <!-- 返回按钮：点击直接跳转首页 -->
         <a href="index.html" class="back-btn">返回首页</a>
-
         <h1 class="page-title">用户协议与隐私政策</h1>
+        <p class="meta-info">最后更新日期：2026年3月15日 &nbsp;|&nbsp; 生效日期：2026年3月15日</p>
+        <p class="intro">欢迎使用本平台（以下简称「服务」）。请您在使用前仔细阅读以下条款。您使用本平台的行为即视为您已阅读、理解并同意受本协议全部条款的约束。</p>
 
-        <!-- 一、免责声明 -->
-        <section class="section">
-            <h2 class="section-title">免责声明</h2>
+        <section class="section" id="disclaimer">
+            <h2 class="section-title">一、免责声明 / 责任限制</h2>
             <div class="section-content">
-                <p><strong>1.</strong> 本平台仅作为校园内部信息交流与服务使用，用户发布的所有内容（包括文字、图片、文件、评论等）均由发布者自行承担责任，与平台无关。</p>
-                <p><strong>2.</strong> 平台不保证所有信息的真实性、准确性和完整性，不对二手交易、失物招领、求助信息等承担任何担保责任。</p>
-                <p><strong>3.</strong> 如用户发布违法、违规、侵权、虚假信息，平台有权直接删除、屏蔽内容，甚至限制账号功能，不另行通知。</p>
-                <p><strong>4.</strong> 使用本平台即表示用户已阅读、理解并同意本声明内容。</p>
+                <p><strong>1. 信息真实性与第三方内容</strong></p>
+                <ul>
+                    <li>本平台仅作为校园内部信息交流、公益求助、二手交易及知识分享的网络服务提供者，提供存储空间与交流渠道。</li>
+                    <li>平台上的所有信息、内容、观点及建议均由发布者个人提供，不代表本平台的立场。</li>
+                    <li>平台对信息的真实性、准确性、完整性、合法性不做任何明示或暗示的担保，不承担任何审查、担保或赔偿责任。</li>
+                </ul>
+                <p><strong>2. 二手交易与公益风险</strong></p>
+                <ul>
+                    <li>针对二手交易、失物招领、求助等信息，平台仅提供信息发布平台。交易双方的实际履约行为、物品质量、身份核实均由双方自行负责，平台不参与交易，不承担任何连带担保责任。</li>
+                    <li>建议用户在线下交易时采取安全防护措施，并核实对方身份及物品信息。</li>
+                </ul>
+                <p><strong>3. 内容管理与删改权</strong></p>
+                <ul>
+                    <li>为维护平台公共利益及校园网络环境，平台保留权利：对任何违法、违规、侵权、不雅、虚假或令人不悦的内容进行删除、屏蔽、隐藏；对违规账号进行警告、限制发布、暂停使用，直至永久封禁。</li>
+                    <li>上述操作无需提前通知用户，且不构成平台对用户的违约或赔偿责任。</li>
+                </ul>
+                <p><strong>4. 技术免责与不可抗力</strong></p>
+                <ul>
+                    <li>平台不保证服务不间断、无故障、安全无误，也不保证服务器绝对安全无病毒。</li>
+                    <li>因自然灾害、战争、政府行为、网络攻击、系统维护、第三方服务故障等不可抗力导致的服务中断或损失，平台不承担责任。</li>
+                </ul>
             </div>
         </section>
 
-        <!-- 二、用户政策 -->
-        <section class="section">
-            <h2 class="section-title">用户政策</h2>
+        <section class="section" id="user-policy">
+            <h2 class="section-title">二、用户行为规范与政策</h2>
             <div class="section-content">
-                <p><strong>1.</strong> 用户必须遵守国家法律法规、校园管理规定，文明发言、理性交流。</p>
-                <p><strong>2.</strong> 禁止发布广告、垃圾信息、色情、暴力、虚假、侵权、敏感内容。</p>
-                <p><strong>3.</strong> 禁止恶意刷屏、刷评论、刷动态、刷量等破坏平台秩序的行为。</p>
-                <p><strong>4.</strong> 用户账号仅限本人使用，不得转借、售卖、共享给他人。</p>
-                <p><strong>5.</strong> 平台有权根据管理需要，调整功能、限制发布数量、清理违规内容。</p>
+                <p><strong>1. 遵纪守法义务</strong></p>
+                <ul>
+                    <li>用户必须严格遵守中华人民共和国宪法、法律、法规及所在学校的各项管理规定。</li>
+                    <li>严禁发布危害国家安全、泄露秘密、破坏民族团结、宣扬暴力/色情、赌博、诈骗等违法内容。</li>
+                </ul>
+                <p><strong>2. 内容发布规范</strong></p>
+                <ul>
+                    <li>禁止广告与营销：禁止发布商业广告、微商推广、外链引流、垃圾信息。</li>
+                    <li>禁止侵权与盗版：禁止发布侵犯他人肖像权、名誉权、著作权、商标权的内容；禁止上传盗版软件、影视资源。</li>
+                    <li>禁止恶意行为：禁止恶意刷屏、刷评论、刷动态、恶意注册账号、爬虫攻击、干扰平台正常运行。</li>
+                </ul>
+                <p><strong>3. 账号管理责任</strong></p>
+                <ul>
+                    <li>用户账号仅限本人实名注册、合法使用，严禁转借、出租、售卖或共享给他人。</li>
+                    <li>用户需妥善保管账号密码，因自身原因导致账号被盗、丢失所造成的损失，由用户自行承担。</li>
+                </ul>
+                <p><strong>4. 平台运营权</strong></p>
+                <ul>
+                    <li>平台有权根据运营需要，随时调整、增减、暂停或终止部分或全部服务功能。</li>
+                    <li>平台有权清理长期不活跃账号、违规内容及垃圾数据。</li>
+                </ul>
             </div>
         </section>
 
-        <!-- 三、隐私政策 -->
-        <section class="section">
-            <h2 class="section-title">隐私政策</h2>
+        <section class="section" id="privacy">
+            <h2 class="section-title">三、隐私政策（数据安全与处理）</h2>
             <div class="section-content">
-                <p><strong>1.</strong> 本平台仅收集必要的用户信息，包括昵称、头像、发布内容、课表信息等，用于功能实现与页面展示。</p>
-                <p><strong>2.</strong> 用户信息仅在平台内部使用，不会出售、出租、泄露给任何第三方。</p>
-                <p><strong>3.</strong> 用户上传的头像、文件等数据会存储在云端，仅用于平台功能。</p>
-                <p><strong>4.</strong> 平台会采取合理措施保护用户数据安全，但不保证绝对安全。</p>
-                <p><strong>5.</strong> 用户使用平台即表示同意本隐私政策。</p>
+                <p><strong>1. 信息收集范围</strong></p>
+                <ul>
+                    <li>本平台仅收集提供服务所必需的最少信息：包括用户昵称、头像、注册账号、发布内容、互动记录等。</li>
+                    <li>如涉及课程表等个人信息，仅用于平台内部展示，绝不超范围收集。</li>
+                </ul>
+                <p><strong>2. 信息使用与保护</strong></p>
+                <ul>
+                    <li>用户的个人信息及上传数据（如头像、图片、文件）仅用于平台功能实现、页面展示及站内分享。</li>
+                    <li>平台承诺不出售、不出租、不非法共享用户的个人隐私给第三方用于商业用途。</li>
+                    <li>平台将采取行业标准的加密技术和安全措施保护用户数据，但不保证数据绝对安全，请用户自行备份重要资料。</li>
+                </ul>
+                <p><strong>3. 第三方链接与服务</strong></p>
+                <ul>
+                    <li>如平台包含第三方网站链接（如 Cloudflare 静态托管、第三方图片存储），其隐私政策和行为由第三方负责，本平台概不负责。</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="section" id="copyright">
+            <h2 class="section-title">四、版权与知识产权</h2>
+            <div class="section-content">
+                <p><strong>1.</strong> 用户在平台发布的原创内容（文字、图片等），用户保留其著作权。</p>
+                <p><strong>2.</strong> 用户授权平台在全球范围内，免费、不可撤销、可转授权地使用、复制、修改、传播该内容（用于平台运营、推广、展示）。</p>
+                <p><strong>3.</strong> 未经平台书面授权，任何人不得复制、抄袭、搬运、爬取本平台的内容、数据及界面设计。</p>
+            </div>
+        </section>
+
+        <section class="section" id="legal">
+            <h2 class="section-title">五、法律责任与争议解决</h2>
+            <div class="section-content">
+                <p><strong>1.</strong> 因用户违反本协议导致平台遭受第三方索赔（包括但不限于律师费、赔偿金），用户应全额赔偿。</p>
+                <p><strong>2.</strong> 因用户发布违法内容导致平台被封禁、举报或处罚，用户需承担全部法律责任。</p>
+                <p><strong>3.</strong> 本协议受中华人民共和国法律管辖。如发生争议，双方应协商解决；协商不成的，应向平台注册地或服务器所在地有管辖权的人民法院提起诉讼。</p>
             </div>
         </section>
     </div>

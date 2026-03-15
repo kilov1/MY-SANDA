@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>杉达校园动态</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft YaHei", "PingFang SC", sans-serif;
+        }
+        body {
+            background: linear-gradient(180deg, #f8f5ff, #ffffff);
+            padding: 30px 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+            max-height: 850px;
+            overflow-y: auto;
+            scrollbar-width: thin;
+            scrollbar-color: #9370db #e9e3f8;
+        }
+        /* 紫色美化滚动条 */
+        body::-webkit-scrollbar {
+            width: 8px;
+        }
+        body::-webkit-scrollbar-thumb {
+            background: #9370db;
+            border-radius: 4px;
+            transition: background 0.3s ease;
+        }
+        body::-webkit-scrollbar-thumb:hover {
+            background: #7b5bbf;
+        }
+        body::-webkit-scrollbar-track {
+            background: #e9e3f8;
+            border-radius: 4px;
+        }
+        /* 核心：杉达校园动态 紫色渐变放大标题 */
+        .news-top-title {
+            font-size: 32px;
+            font-weight: 700;
+            text-align: left;
+            margin: 0 0 35px 0;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #9370db;
+            /* 紫色渐变字体 */
+            background: linear-gradient(135deg, #5a3d99 0%, #9370db 50%, #c9b6eb 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: 2px;
+        }
+        /* 新闻列表容器 */
+        .news-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        /* 紫色渐变新闻卡片 */
+        .news-item {
+            background: linear-gradient(135deg, #ffffff 0%, #f3efff 100%);
+            border: 1px solid #e9e3f8;
+            border-radius: 12px;
+            padding: 20px 25px;
+            box-shadow: 0 4px 8px rgba(147, 112, 219, 0.08);
+            transition: all 0.3s ease-in-out;
+        }
+        /* 卡片悬浮上浮动效 */
+        .news-item:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(147, 112, 219, 0.15);
+            background: linear-gradient(135deg, #f3efff 0%, #ebe2f8 100%);
+            border-color: #d8cbf0;
+        }
+        /* 新闻标题链接-新窗口跳转原文 */
+        .news-item a {
+            text-decoration: none;
+            color: #333333;
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+        .news-item-title {
+            font-size: 17px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            transition: color 0.3s ease;
+        }
+        .news-item:hover .news-item-title {
+            color: #9370db;
+        }
+        /* 新闻时间-淡紫色调 */
+        .news-item-time {
+            font-size: 13px;
+            color: #8a6fcb;
+            font-weight: 400;
+        }
+        /* 手机端自适应适配 */
+        @media (max-width: 768px) {
+            .news-top-title {
+                font-size: 24px;
+                margin-bottom: 25px;
+                letter-spacing: 1.5px;
+            }
+            .news-item {
+                padding: 15px 20px;
+            }
+            .news-item-title {
+                font-size: 15px;
+            }
+            body {
+                max-height: 700px;
+                padding: 20px 15px;
+            }
+        }
+        /* 平板端适配 */
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .news-top-title {
+                font-size: 28px;
+            }
+            .news-item {
+                padding: 18px 22px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 紫色渐变放大标题：杉达校园动态 -->
+    <h1 class="news-top-title">杉达校园动态</h1>
+    <!-- 新闻列表：前40条，点击新窗口跳转原文 -->
+    <div class="news-list">
+        <div class="news-item">
+            <a href="https://news.sandau.edu.cn/51/b9/c1217a86457/page.htm" target="_blank">
+                <div class="news-item-title">杉达研究生新学期开启</div>
+                <div class="news-item-time">2026-03-13</div>
+            </a>
+        </div>
+        <div class="news-item">
+            <a href="https://news.sandau.edu.cn/51/a7/c1217a86439/page.htm" target="_blank">
+                <div class="news-item-title">新西兰教育国际推广局副局长及驻华大使馆教育参赞莅临杉达访问</div>
+                <div class="news-item-time">2026-03-12</div>
+            </a>
+        </div>
+        <div class="news-item">
+            <a href="https://news.sandau.edu.cn/51/93/c1217a86419/page.htm" target="_blank">
+                <div class="news-item-title">上海杉达学院党委部署开展树立和践行正确政绩观学习教育</div>
+                <div class="news-item-time">2026-03-11</div>
+            </a>
+        </div>
+        <div class="news-item">
+            <a href="https://news.sandau.edu.cn/51/92/c1217a86418/page.htm" target="_blank">
+                <div class="news-item-title">马耳他旅游研究学院校长一行来访杉达</div>
+                <div class="news-item-time">2026-03-11</div>
+            </a>
+        </div>
+        <div class="news-item">
+            <a href="https://news.sandau.edu.cn/51/94/c1217a86420/page.htm" target="_blank">
+                <div class="news-item-title">杉达召开二级管理规范化建设座谈会</div>
+                <div class="news-item-time">2026-03-11</div>
+            </a>
+        </div>
+        <div class="news-item">
+            <a href="https://mp.weixin.qq.com/s/QahH1OcJQBuOwKplZmcwMg" target="_blank">
+                <div class="news-item-title">时尚出圈！杉达师生为“它”创作，成为上海宠物时装周官方宣传片</div>
+                <div class="news-item-time">2026-03-11</div>
+            </a>
+        </div>
+        <div class="news-item">
+            <a href="https://news.sandau.edu.cn/51/82/c1217a86402/page.htm" target="_blank">
+                <div class="news-item-title">杉达研究生导师积极参与全国学位论文评审工作获教育部致谢</div>
+                <div class="news-item-time">2026-03-10</div>
+            </a>
+        </div>
+        <div class="news-item">
+            <a href="https://news.sandau.edu.cn/51/7f/c1217a86399/page.htm" target="_blank">
+                <div class="news-item-title">杉达学子赴坎特伯雷大学参加“多元文化与全球胜任力”访学项目</div>
+                <div class="news-item-time">2026-03-10</div>
+            </a>
+        </div>
+        <div class="news-item">
+            <a href="https://mp.weixin.qq.com/s/9ZrHj-eR_Bo6MLdTx0tDmQ" target="_blank">
+                <div class="news-item-title">杉达师生热议全国两会</div>
+                <div class="news-item-time">2026-03-10</div>
+            </a>
+        </div>
+        <div class="news-item">
+            <a href="https://mp.weixin.qq.com/s/objjv7df_SndxE70lUD0LA" target="_blank">
+                <div class="news-item-title">杉达举办纪念“三八”国际劳动妇女节116周年座谈会</div>
+                <div class="news-item-time">2026-03-08</div>
+            </a>
+        </div>
+        <div class="news-item">
+            <a href="https://news.pdrong.com/article/index?03181d968b0cf5dfc78f6040a88ec8e33b0534a4c05d4c0a6633fb8fbc5bbc048c9fbd16295e1957f88c299afde86f9b=" target="_blank">
+                <div class="news-item-title">瞄准产业发展需求，浦东高校新增3个“高本贯通”专业</div>
+                <div class="news-item-time">2026-03-06</div>
+            </a>
+        </div>
+        <div class="news-item">
+            <a href="https://mp.weixin.qq.com/s/CTPdO9V9Mejw3iegbEifPg" target="_blank">
+                <div class="news-item-title">春启新程！杉达开学第一周→</div>
+                <div class="news-item-time">2026-03-06</div>
+            </a>
+        </div>
+        <div class="news-item">
+            <a href="https://news.sandau.edu.cn/51/1e/c1217a86302/page.htm" target="_blank">
+                <div class="news-item-title">杉达教师入选2025年度上海市民办高校 “民匠计划”</div>
+                <div class="news-item-time">2026-03-05</div>
+            </a>
+        </div>
+        <div class="news-item">
+            <a href="https://mp.weixin.qq.com/s/RIaipWhXbnpJzk0lIQC-kQ" target="_blank">
+                <div class="news-item-title">以榜样之力指引青春成长，沪上高校学子践行雷锋精神</div>
+                <div class="news-item-time">2026-03-05</div>
+            </a>
+        </div>
+        <div class="news-item">
+            <a href="https://www.shobserver.com/journal/article/share?id=496172" target="_blank">
+                <div class="news-item-title">“高本贯通”试点专业持续扩容</div>
+                <div class="news-item-time">2026-03-05</div>
+            </a>
+        </div>
+        <div class="news-item">
+            <a href="https://mp.weixin.qq.com/s/t6mQh3jcAexObMw9mXQ4JQ" target="_blank">
+                <div class="news-item-title">践初心、送温情、护归途……默默奉献的身影里，有青春最暖的底色｜沪上高校学子寒假生活②</div>
+                <div class="news-item-time">2026-03-04</div>
+            </a>
+        </div>
+        <div class="news-item">
+            <a href="https://mp.weixin.qq.com/s/_kyM7i6HHkD1EWtmiTAF9Q" target="_blank">
+                <div class="news-item-title">杉达学子原创作品《如愿》登上国家话剧院舞台</div>
+                <div class="news-item-time">2026-03-04</div>
+            </a>
+        </div>
+        <div class="news-item">
+            <a href="https://news.sandau.edu.cn/50/ff/c1217a86271/page.htm" target="_blank">
+                <div class="news-item-title">杉达教授主编教材入选第二批“十四五”职业教育国家规划教材</div>
+                <div class="news-item-time">2026-03-03</div>
+            </a>
+        </div>
+        <div class="news-item">
+            <a href="http://www.moe.gov.cn/s78/A12/gongzuo/moe_2154/202512/t20251226_1424579.html" target="_blank">
+                <div class="news-item-title">上海市统筹建强“五个体系”全面推进民办高校思政课高质量发展</div>
+                <div class="news-item-time">2026-03-02</div>
+            </a>
+        </div>
+        <div class="news-item">
+            <a href="https://news.sandau.edu.cn/50/e8/c1217a86248/page.htm" target="_blank">
+                <div class="news-item-title">上海杉达学院召开“十五五”规划编制专题报告会暨寒假务虚会</div>
+                <div class="news-item-time">2026-03-02</div>
+            </a>
+        </div>
+        <div class="news-item">
+            <a href="https://news.sandau.edu.cn/50/cb/c1217a86219/page.htm" target="_blank">
+                <div class="news-item-title">杉达召开2025年度党员领导干部民主生活会</div>
+                <div class="news-item-time">2026-02-28</div>
+            </a>
+        </div>
+        <div class="news-item">
+            <a href="https://mp.weixin.qq.com/s/73gr34Gl3CBR4126papFuw" target="_blank">
+                <div class="news-item-title">校领导大年初一慰问春节坚守岗位一线职工</div>
+                <div class="news-item-time">2026-02-18</div>
+            </a>
+        </div>
+        <div class="news-item">
+            <a href="https://mp.weixin.qq.com/s/r-afb-dvEb5x_MhxHKi49g" target="_blank">
+                <div class="news-item-title">聚焦上海两会，杉达人建言献策</div>
+                <div class="news-item-time">2026-02-09</div>
+            </a>
+        </div>
+        <div class="news-item">
+            <a href="https://article.xuexi.cn/articles/index.html?art_id=9175238380940002980&source=share&cdn=https%3A%2F%2Fregion-shanghai-resource&study_style_id=feeds_opaque&reco_id=1036ffb45c17c0a822a5000e&share_to=wx_single&study_share_enable=1&study_comment_disable=1&ptype=0&item_id=9175238380940002980" target="_blank">
+                <div class="news-item-title">理工科受追捧，上海春考新风向值得关注</div>
+                <div class="news-item-time">2026-02-06</div>
+            </a>
+        </div>
+        <div class="news-item">
+            <a href="https://www.shobserver.com/staticsg/res/html/web/newsDetail.html?id=1064114" target="_blank">
+                <div class="news-item-title">上海春考校测线揭晓，372分刷新“天花板”，哪些专业受青睐？</div>
+                <div class="news-item-time">2026-02-05</div>
+            </a>
+        </div>
+        <div class="news-item">
+            <a href="https://mp.weixin.qq.com/s/yYJqoAfOwJbzq0gcustLEg" target="_blank">
+                <div class="news-item-title">杉达98名志愿者守护春运回家路</div>
+                <div class="news-item-time">2026-02-04</div>
+            </a>
+        </div>
+        <div class="news-item">
+            <a href="https://mp.weixin.qq.com/s/NzLlAJ_C_uU-V-EigO3-WA" target="_blank">
+                <div class="news-item-title">留校过年也精彩，杉达团圆饭暖心开席</div>
+                <div class="news-item-time">2026-01-30</div>
+            </a>
+        </div>
+        <div class="news-item">
+            <a href="https://mp.weixin.qq.com/s/aV0W3z6asFFs3sfsl_i9Mg" target="_blank">
+                <div class="news-item-title">第十三届上海市“中华杯”教师职业技能竞赛暨首届“杉达杯”产教融合创新创意大赛颁奖大会举行</div>
+                <div class="news-item-time">2026-01-27</div>
+            </a>
+        </div>
+        <div class="news-item">
+            <a href="https://news.sandau.edu.cn/50/3d/c1217a86077/page.htm" target="_blank">
+                <div class="news-item-title">杉达承办浦东院士专家工作站联合会会员大会</div>
+                <div class="news-item-time">2026-01-26</div>
+            </a>
+        </div>
+        <div class="news-item">
+            <a href="https://news.sandau.edu.cn/4f/c2/c1217a85954/page.htm" target="_blank">
+                <div class="news-item-title">杉达师生助力2025全球开发者先锋大会获感谢信</div>
+                <div class="news-item-time">2026-01-21</div>
+            </a>
+        </div>
+        <div class="news-item">
+            <a href="https://news.sandau.edu.cn/4f/c1/c1217a85953/page.htm" target="_blank">
+                <div class="news-item-title">杉达在应用型课程建设联盟2025年会论坛上获奖并发言</div>
+                <div class="news-item-time">2026-01-21</div>
+            </a>
+        </div>
+        <div class="news-item">
+            <a href="https://mp.weixin.qq.com/s/U5drJN7gspJGW24sePlx1g" target="_blank">
+                <div class="news-item-title">榜样亲述！南丁格尔奖得主走进杉达</div>
+                <div class="news-item-time">2026-01-19</div>
+            </a>
+        </div>
+        <div class="news-item">
+            <a href="https://mp.weixin.qq.com/s/ILCoUC1mR45dA6KCCPqcJQ" target="_blank">
+                <div class="news-item-title">杉达召开上海民办高校高质量就业工作研讨会</div>
+                <div class="news-item-time">2026-01-16</div>
+            </a>
+        </div>
+        <div class="news-item">
+            <a href="https://news.sandau.edu.cn/4f/56/c1217a85846/page.htm" target="_blank">
+                <div class="news-item-title">杉达教师深度参与国家级数字贸易行业标准制定</div>
+                <div class="news-item-time">2026-01-16</div>
+            </a>
+        </div>
+        <div class="news-item">
+            <a href="https://news.sandau.edu.cn/4f/55/c1217a85845/page.htm" target="_blank">
+                <div class="news-item-title">杉达5项案例入选第三批上海普通高等学校本科教育教学示范案例</div>
+                <div class="news-item-time">2026-01-16</div>
+            </a>
+        </div>
+        <div class="news-item">
+            <a href="https://news.sandau.edu.cn/4f/45/c1217a85829/page.htm" target="_blank">
+                <div class="news-item-title">杉达召开校级示范实习基地建设交流会</div>
+                <div class="news-item-time">2026-01-15</div>
+            </a>
+        </div>
+        <div class="news-item">
+            <a href="https://news.sandau.edu.cn/4f/2a/c1217a85802/page.htm" target="_blank">
+                <div class="news-item-title">上海市血液管理办公室一行来访杉达研讨无偿献血工作创新</div>
+                <div class="news-item-time">2026-01-14</div>
+            </a>
+        </div>
+        <div class="news-item">
+            <a href="https://news.sandau.edu.cn/4f/18/c1217a85784/page.htm" target="_blank">
+                <div class="news-item-title">杉达召开中层干部培训会</div>
+                <div class="news-item-time">2026-01-12</div>
+            </a>
+        </div>
+    </div>
+</body>
+</html>

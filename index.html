@@ -37,13 +37,6 @@
         </div>
     </nav>
 
-    <!-- 管理员入口：仅登录页显示，位于导航条下方 -->
-    <div id="adminEntryWrap" class="admin-entry-wrap" style="display:none">
-        <div class="container-main">
-            <button type="button" id="adminEntryBtn" class="admin-entry-btn">管理员登录</button>
-        </div>
-    </div>
-
     <div id="homePage" class="page active">
         <div class="container-main py-12">
             <div class="text-center mb-12 fade-in">
@@ -54,7 +47,7 @@
             <div class="mb-12">
                 <div class="flex flex-wrap gap-3 justify-center mb-12">
                     <button class="category-btn active px-6 py-3 rounded-lg bg-white text-gray-800 font-medium text-sm md:text-base" data-page="homePage">首页</button>
-                    <button class="category-btn px-6 py-3 rounded-lg bg-white text-gray-800 font-medium text-sm md:text-base" data-page="campusNewsPage">校园动态</button>
+                    <button type="button" class="category-btn px-6 py-3 rounded-lg bg-white text-gray-800 font-medium text-sm md:text-base" data-page="campusNewsModal">校园动态</button>
                     <button class="category-btn px-6 py-3 rounded-lg bg-white text-gray-800 font-medium text-sm md:text-base" data-page="studyMaterialsPage">学习资料</button>
                     <button class="category-btn px-6 py-3 rounded-lg bg-white text-gray-800 font-medium text-sm md:text-base" data-page="campusLifePage">校园生活</button>
                     <button class="category-btn px-6 py-3 rounded-lg bg-white text-gray-800 font-medium text-sm md:text-base" data-page="lostFoundPage">失物招领</button>
@@ -126,9 +119,6 @@
                     </div>
                 </div>
                 <button type="button" class="carousel-next" aria-label="下一项">›</button>
-            </div>
-            <div class="flex flex-wrap gap-3 justify-center mt-12 mb-8">
-                <a href="agreement.html" class="category-btn px-6 py-3 rounded-lg bg-white text-gray-800 font-medium text-sm md:text-base no-underline">用户协议与隐私政策</a>
             </div>
         </div>
     </div>
@@ -288,20 +278,41 @@
         </div>
     </div>
 
-    <!-- 管理员登录页（独立页面，粉色渐变 + 玻璃登录框） -->
-    <div id="adminLoginPage" class="page admin-login-page">
-        <button type="button" class="admin-login-back" id="adminLoginBackBtn">← 返回</button>
+    <!-- 管理员登录页（overlay，雪山背景+玻璃卡片，与参考图结构一致） -->
+    <div id="adminLoginPage" class="admin-login-overlay admin-login-overlay-hidden">
         <div class="admin-login-bg"></div>
-        <div class="admin-login-overlay">
-            <div class="admin-login-box">
-                <form id="adminLoginForm" novalidate>
-                    <input type="text" id="adminAccount" placeholder="账号" autocomplete="off">
-                    <input type="password" id="adminPassword" placeholder="密码" autocomplete="off">
-                    <div id="adminLoginError" class="admin-login-error hidden"></div>
-                    <button type="submit" class="admin-login-btn">登录</button>
-                </form>
+        <header class="admin-login-top-bar">
+            <button type="button" class="admin-login-close-btn" id="adminLoginBackBtn" aria-label="关闭">&times;</button>
+            <span class="admin-login-step">1/3</span>
+        </header>
+        <main class="admin-login-main">
+            <div class="admin-login-glass-card">
+                <div class="admin-login-form-side">
+                    <div class="admin-login-title-wrap">
+                        <span class="admin-login-title">Administrator</span>
+                        <span class="admin-login-subtitle">Log in</span>
+                    </div>
+                    <form id="adminLoginForm" novalidate>
+                        <div class="admin-login-form-group">
+                            <label for="adminAccount">Account</label>
+                            <input type="text" id="adminAccount" placeholder="Account" autocomplete="off">
+                        </div>
+                        <div class="admin-login-form-group">
+                            <label for="adminPassword">Password</label>
+                            <input type="password" id="adminPassword" placeholder="Password" autocomplete="off">
+                        </div>
+                        <div class="admin-login-form-group">
+                            <label for="adminConfirmPassword">Confirm Password</label>
+                            <input type="password" id="adminConfirmPassword" placeholder="Confirm Password" autocomplete="off">
+                        </div>
+                        <div id="adminLoginError" class="admin-login-error hidden"></div>
+                    </form>
+                </div>
+                <div class="admin-login-action-side">
+                    <button type="submit" form="adminLoginForm" class="admin-login-btn-main" id="adminLoginSubmitBtn">登录后台</button>
+                </div>
             </div>
-        </div>
+        </main>
     </div>
 
     <div id="registerPage" class="page auth-page">
@@ -528,13 +539,30 @@
         </div>
     </div>
 
-    <footer class="site-footer py-6 border-t border-blue-100 bg-white/80 mt-auto"></footer>
+    <footer class="site-footer py-6 border-t border-blue-100 bg-white/80 mt-auto">
+        <div class="container-main text-center text-gray-600 text-sm">
+            <a href="agreement.html" class="text-blue-600 hover:text-blue-800 hover:underline">用户协议</a>
+            <span class="mx-2">|</span>
+            <a href="agreement.html#privacy" class="text-blue-600 hover:text-blue-800 hover:underline">隐私政策</a>
+        </div>
+    </footer>
+
+    <!-- 管理员入口：仅普通用户登录页显示，右下角，点击进入管理员登录页 -->
+    <button type="button" id="adminEntryFloatingBtn" class="admin-fab admin-fab-hidden" title="管理员登录" aria-label="管理员登录">管理员登录</button>
 
     <!-- 删除确认弹窗 -->
     <div id="adminDeleteConfirmModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4" style="background: rgba(0,0,0,0.5);">
         <div class="bg-white rounded-2xl shadow-xl max-w-sm w-full p-6 border border-gray-200" onclick="event.stopPropagation()">
             <p id="adminDeleteConfirmText" class="text-gray-800 font-medium mb-6 text-center">是否确认删除？</p>
             <div class="flex gap-3"><button type="button" id="adminDeleteConfirmBtn" class="flex-1 bg-red-500 text-white py-2 rounded-lg font-medium text-sm hover:bg-red-600">确认</button><button type="button" id="adminDeleteCancelBtn" class="flex-1 border border-gray-300 text-gray-700 py-2 rounded-lg font-medium text-sm hover:bg-gray-50">取消</button></div>
+        </div>
+    </div>
+
+    <!-- 校园动态弹窗：玻璃毛边风格，iframe 加载 news.html -->
+    <div id="campusNewsModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4" style="background: rgba(0,0,0,0.4); backdrop-filter: blur(4px);">
+        <div class="relative w-full max-w-3xl max-h-[90vh] rounded-2xl overflow-hidden flex flex-col bg-white/90 backdrop-blur-xl border border-white/60 shadow-2xl">
+            <button type="button" id="campusNewsModalClose" class="absolute top-4 right-4 z-10 px-4 py-2 rounded-lg bg-white/80 backdrop-blur-sm border border-white/60 text-gray-700 hover:bg-white transition-colors text-sm font-medium" aria-label="关闭">关闭</button>
+            <iframe id="campusNewsModalFrame" src="about:blank" class="w-full flex-1 min-h-[70vh] border-0 rounded-b-2xl" title="校园动态"></iframe>
         </div>
     </div>
 
