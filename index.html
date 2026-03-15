@@ -21,6 +21,10 @@
                     <button type="button" id="navHomeBtn" class="hidden text-gray-600 hover:text-blue-600 transition-colors text-sm font-medium">返回首页</button>
                 </div>
                 <div class="flex items-center gap-4">
+                    <div id="adminBar" class="hidden items-center gap-3">
+                        <span class="text-gray-700 font-medium text-sm">欢迎回来，管理员</span>
+                        <button type="button" id="adminLogoutBtn" class="px-4 py-2 text-sm font-medium text-red-600 border border-red-200 rounded-lg hover:bg-red-50 transition-colors">退出管理</button>
+                    </div>
                     <button id="navLoginBtn" class="btn-secondary px-6 py-2 rounded-lg font-medium text-sm">登录</button>
                     <button id="navRegisterBtn" class="btn-primary px-6 py-2 rounded-lg font-medium text-sm text-white">注册</button>
                     <div id="userInfo" class="hidden flex items-center gap-2 cursor-pointer hover:opacity-90 transition-opacity" title="个人中心">
@@ -32,6 +36,13 @@
             </div>
         </div>
     </nav>
+
+    <!-- 管理员入口：仅登录页显示，位于导航条下方 -->
+    <div id="adminEntryWrap" class="admin-entry-wrap" style="display:none">
+        <div class="container-main">
+            <button type="button" id="adminEntryBtn" class="admin-entry-btn">管理员登录</button>
+        </div>
+    </div>
 
     <div id="homePage" class="page active">
         <div class="container-main py-12">
@@ -122,7 +133,17 @@
         </div>
     </div>
 
-    <div id="campusNewsPage" class="page"><div class="container-main py-12"><button class="back-btn mb-8 back-to-home">← 返回</button><h1 class="text-4xl font-bold text-gray-800 mb-8">校园动态</h1><div class="space-y-4"><div class="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer news-item"><div class="flex items-start justify-between mb-3"><div class="flex-1"><h3 class="text-lg font-bold text-gray-800">学校举办春季运动会</h3><p class="text-sm text-gray-500 mt-1">2026年3月15日</p></div><span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-xs font-medium">新闻</span></div><p class="text-gray-600 leading-relaxed mb-4">本周末学校将举办一年一度的春季运动会，欢迎全校师生积极参与各项比赛项目。</p><button class="text-blue-600 hover:text-blue-800 font-medium text-sm">查看详情 →</button></div><div class="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer news-item"><div class="flex items-start justify-between mb-3"><div class="flex-1"><h3 class="text-lg font-bold text-gray-800">图书馆新增自习室开放</h3><p class="text-sm text-gray-500 mt-1">2026年3月14日</p></div><span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-medium">通知</span></div><p class="text-gray-600 leading-relaxed mb-4">图书馆B座新增3间自习室，现已开放使用。开放时间：周一至周日 8:00-22:00。</p><button class="text-blue-600 hover:text-blue-800 font-medium text-sm">查看详情 →</button></div><div class="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer news-item"><div class="flex items-start justify-between mb-3"><div class="flex-1"><h3 class="text-lg font-bold text-gray-800">校园网络维护通知</h3><p class="text-sm text-gray-500 mt-1">2026年3月13日</p></div><span class="bg-orange-100 text-orange-700 px-3 py-1 rounded-full text-xs font-medium">公告</span></div><p class="text-gray-600 leading-relaxed mb-4">为提升校园网络质量，本周五晚上19:00-23:00将进行网络维护。</p><button class="text-blue-600 hover:text-blue-800 font-medium text-sm">查看详情 →</button></div><div class="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer news-item"><div class="flex items-start justify-between mb-3"><div class="flex-1"><h3 class="text-lg font-bold text-gray-800">学生会招新开始报名</h3><p class="text-sm text-gray-500 mt-1">2026年3月12日</p></div><span class="bg-purple-100 text-purple-700 px-3 py-1 rounded-full text-xs font-medium">新闻</span></div><p class="text-gray-600 leading-relaxed mb-4">学生会各部门现已开始招新，欢迎有热情的同学加入我们的大家庭。</p><button class="text-blue-600 hover:text-blue-800 font-medium text-sm">查看详情 →</button></div><div class="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow cursor-pointer news-item"><div class="flex items-start justify-between mb-3"><div class="flex-1"><h3 class="text-lg font-bold text-gray-800">宿舍卫生检查评比结果公布</h3><p class="text-sm text-gray-500 mt-1">2026年3月11日</p></div><span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-xs font-medium">新闻</span></div><p class="text-gray-600 leading-relaxed mb-4">本月宿舍卫生检查评比已完成，获得流动红旗的宿舍将获得相应奖励。</p><button class="text-blue-600 hover:text-blue-800 font-medium text-sm">查看详情 →</button></div></div></div></div>
+    <div id="campusNewsPage" class="page">
+        <div class="container-main py-12">
+            <button class="back-btn mb-8 back-to-home">← 返回</button>
+            <div class="max-w-3xl mx-auto">
+                <div class="bg-gradient-to-br from-white to-blue-50 rounded-2xl p-6 md:p-8 shadow-lg border border-blue-100">
+                    <h1 class="text-2xl md:text-3xl font-bold text-gray-800 mb-6 text-center">校园动态</h1>
+                    <div id="campusNewsList" class="bg-white rounded-xl border border-blue-100 overflow-hidden divide-y divide-blue-100"></div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <div id="studyMaterialsPage" class="page"><div class="container-main py-12"><button class="back-btn mb-8 back-to-home">← 返回</button><div class="page-intro-h flex items-center gap-4 md:gap-6 rounded-xl p-4 md:p-5 mb-6"><h2 class="text-lg md:text-xl font-bold text-blue-800 flex-shrink-0">学习资料</h2><p class="text-gray-600 text-sm md:text-base flex-1">分享课件、习题、复习资料，互帮互助</p></div><div class="flex flex-col lg:flex-row gap-6"><div class="w-full lg:w-64"><div class="bg-white rounded-lg p-6 shadow-sm sticky top-24"><button id="uploadFileBtn" class="w-full bg-gradient-to-r from-blue-500 to-blue-600 text-white py-3 rounded-lg font-medium mb-4 hover:shadow-lg transition-shadow">+ 上传资料</button><button id="myMaterialsBtn" class="w-full border-2 border-blue-400 text-blue-600 py-3 rounded-lg font-medium mb-6 hover:bg-blue-50 transition-colors">我的发布</button><div class="space-y-2" id="categoryList"></div></div></div><div class="flex-1"><div class="bg-white rounded-lg p-6 shadow-sm mb-6"><div class="flex flex-col md:flex-row gap-4 items-center"><input type="text" id="searchInput" placeholder="搜索资料..." class="flex-1 px-4 py-2 border-2 border-gray-200 rounded-lg focus:border-blue-500 focus:outline-none"><button id="searchBtn" class="bg-blue-500 text-white px-6 py-2 rounded-lg hover:bg-blue-600 transition-colors font-medium">查询</button><select id="sortSelect" class="px-4 py-2 border-2 border-gray-200 rounded-lg focus:border-blue-500 focus:outline-none"><option value="time">按上传时间</option><option value="name">按文件名</option></select></div></div><div id="materialsList" class="space-y-4"></div></div></div></div></div>
 
@@ -249,20 +270,36 @@
                         <label class="auth-label">邮箱/账号</label>
                         <div class="auth-input-wrap">
                             <i class="fa fa-envelope auth-icon" aria-hidden="true"></i>
-                            <input type="text" id="loginEmail" class="auth-input" placeholder="输入任意格式如 xxx@xxx.com" required>
+                            <input type="text" id="email" class="auth-input" placeholder="请输入邮箱/账号">
                         </div>
                     </div>
                     <div class="auth-field">
                         <label class="auth-label">密码</label>
                         <div class="auth-input-wrap">
                             <i class="fa fa-lock auth-icon" aria-hidden="true"></i>
-                            <input type="password" id="loginPassword" class="auth-input" placeholder="输入密码" required>
+                            <input type="password" id="password" class="auth-input" placeholder="输入密码">
                         </div>
                     </div>
                     <div class="text-right mb-6"><span class="auth-link" id="forgotPasswordLink">忘记密码？</span></div>
                     <button type="submit" class="auth-submit-btn">登录 <i class="fa fa-arrow-right auth-btn-icon" aria-hidden="true"></i></button>
                 </form>
                 <div class="auth-footer"><span class="auth-footer-text">还没有账号？</span><span class="auth-link ml-2" id="goToRegister">立即注册</span></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 管理员登录页（独立页面，粉色渐变 + 玻璃登录框） -->
+    <div id="adminLoginPage" class="page admin-login-page">
+        <button type="button" class="admin-login-back" id="adminLoginBackBtn">← 返回</button>
+        <div class="admin-login-bg"></div>
+        <div class="admin-login-overlay">
+            <div class="admin-login-box">
+                <form id="adminLoginForm" novalidate>
+                    <input type="text" id="adminAccount" placeholder="账号" autocomplete="off">
+                    <input type="password" id="adminPassword" placeholder="密码" autocomplete="off">
+                    <div id="adminLoginError" class="admin-login-error hidden"></div>
+                    <button type="submit" class="admin-login-btn">登录</button>
+                </form>
             </div>
         </div>
     </div>
@@ -279,7 +316,7 @@
                             <label class="auth-label">邮箱/账号</label>
                             <div class="auth-input-wrap">
                                 <i class="fa fa-envelope auth-icon" aria-hidden="true"></i>
-                                <input type="text" id="registerEmail" class="auth-input" placeholder="输入任意格式如 xxx@xxx.com" required>
+                                <input type="text" id="registerEmail" class="auth-input" placeholder="请输入邮箱/账号" required>
                             </div>
                         </div>
                         <div class="auth-field">
@@ -331,12 +368,12 @@
                 <button class="auth-back-btn back-to-home" type="button">← 返回</button>
                 <h2 class="auth-title">忘记密码</h2>
                 <p class="auth-subtitle">请输入注册时的邮箱，通过该邮箱重置您的密码。</p>
-                <form id="forgotPasswordForm" novalidate class="auth-form">
+                <form id="forgotPasswordForm" novalidate autocomplete="off" class="auth-form">
                     <div class="auth-field">
                         <label class="auth-label">邮箱/账号</label>
                         <div class="auth-input-wrap">
                             <i class="fa fa-envelope auth-icon" aria-hidden="true"></i>
-                            <input type="text" id="forgotEmail" class="auth-input" placeholder="输入注册时的邮箱如 xxx@xxx.com" required>
+                            <input type="text" id="forgotEmail" class="auth-input" placeholder="请输入邮箱" autocomplete="off">
                         </div>
                     </div>
                     <button type="submit" class="auth-submit-btn">下一步 <i class="fa fa-arrow-right auth-btn-icon" aria-hidden="true"></i></button>
@@ -401,11 +438,12 @@
                         <div class="grid grid-cols-2 gap-4"><div><label class="block text-gray-700 font-medium mb-1 text-sm">学院</label><input type="text" id="profileCollege" class="w-full px-4 py-2 border rounded-lg text-sm" placeholder="学院"></div><div><label class="block text-gray-700 font-medium mb-1 text-sm">专业</label><input type="text" id="profileMajor" class="w-full px-4 py-2 border rounded-lg text-sm" placeholder="专业"></div></div>
                         <div><label class="block text-gray-700 font-medium mb-1 text-sm">个人简介</label><textarea id="profileBio" class="w-full px-4 py-2 border rounded-lg text-sm" placeholder="个人简介" rows="3"></textarea></div>
                         <div class="flex flex-wrap gap-3 pt-4">
-                            <button id="saveProfileBtn" class="px-6 py-2 bg-blue-500 text-white rounded-lg font-medium text-sm hover:bg-blue-600">保存</button>
-                            <button id="changePasswordBtn" class="px-6 py-2 bg-gray-500 text-white rounded-lg font-medium text-sm hover:bg-gray-600">修改密码</button>
-                            <button id="cancelProfileBtn" class="px-6 py-2 border border-gray-300 text-gray-700 rounded-lg font-medium text-sm hover:bg-gray-50">取消</button>
-                            <button id="logoutBtn" class="px-6 py-2 bg-red-500 text-white rounded-lg font-medium text-sm hover:bg-red-600 transition-colors">退出登录</button>
+                            <button type="button" id="saveProfileBtn" class="profile-btn profile-btn-primary">保存</button>
+                            <button type="button" id="changePasswordBtn" class="profile-btn profile-btn-secondary">修改密码</button>
+                            <button type="button" id="cancelProfileBtn" class="profile-btn profile-btn-outline">取消</button>
+                            <button type="button" id="logoutBtn" class="profile-btn profile-btn-danger">退出登录</button>
                         </div>
+                        <div id="profileSaveHint" class="profile-hint" aria-live="polite"></div>
                     </div>
                 </div>
             </div>
@@ -425,10 +463,11 @@
                             <div><label class="block text-gray-700 font-medium mb-1 text-sm">确认新密码</label><input type="password" id="confirmNewPassword" class="w-full px-4 py-2 border rounded-lg text-sm" placeholder="再次输入新密码" required></div>
                         </div>
                         <div class="flex gap-3 mt-6">
-                            <button type="submit" class="flex-1 py-2 bg-blue-500 text-white rounded-lg font-medium text-sm">提交</button>
-                            <button type="button" id="cancelChangePasswordBtn" class="flex-1 py-2 border border-gray-300 text-gray-700 rounded-lg font-medium text-sm">取消</button>
+                            <button type="submit" class="flex-1 profile-btn profile-btn-primary">提交</button>
+                            <button type="button" id="cancelChangePasswordBtn" class="flex-1 profile-btn profile-btn-outline">取消</button>
                         </div>
-                        <div class="text-center mt-4"><button type="button" id="forgotPasswordInChangeBtn" class="text-blue-600 hover:underline text-sm">忘记旧密码？</button></div>
+                        <div class="text-center mt-4"><button type="button" id="forgotPasswordInChangeBtn" class="profile-btn-link">忘记旧密码？</button></div>
+                        <div id="changePasswordHint" class="profile-hint mt-4" aria-live="polite"></div>
                     </form>
                 </div>
             </div>
@@ -491,6 +530,14 @@
 
     <footer class="site-footer py-6 border-t border-blue-100 bg-white/80 mt-auto"></footer>
 
+    <!-- 删除确认弹窗 -->
+    <div id="adminDeleteConfirmModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4" style="background: rgba(0,0,0,0.5);">
+        <div class="bg-white rounded-2xl shadow-xl max-w-sm w-full p-6 border border-gray-200" onclick="event.stopPropagation()">
+            <p id="adminDeleteConfirmText" class="text-gray-800 font-medium mb-6 text-center">是否确认删除？</p>
+            <div class="flex gap-3"><button type="button" id="adminDeleteConfirmBtn" class="flex-1 bg-red-500 text-white py-2 rounded-lg font-medium text-sm hover:bg-red-600">确认</button><button type="button" id="adminDeleteCancelBtn" class="flex-1 border border-gray-300 text-gray-700 py-2 rounded-lg font-medium text-sm hover:bg-gray-50">取消</button></div>
+        </div>
+    </div>
+
     <div id="policyModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
         <div class="bg-white rounded-lg shadow-lg max-w-2xl w-full max-h-[85vh] overflow-hidden flex flex-col">
             <div class="p-6 border-b border-gray-200 flex-shrink-0">
@@ -499,6 +546,62 @@
             <div id="policyModalContent" class="p-6 overflow-y-auto flex-1 text-gray-700 leading-relaxed text-sm md:text-base space-y-4"></div>
             <div class="p-4 border-t border-gray-200 flex-shrink-0">
                 <button type="button" id="policyModalClose" class="w-full bg-blue-500 text-white py-2 rounded-lg font-medium">关闭</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 帖子图片全屏预览 -->
+    <div id="imagePreviewModal" class="hidden fixed inset-0 z-[60] flex items-center justify-center bg-black bg-opacity-90 p-4">
+        <img id="imagePreviewModalImg" src="" alt="大图预览" class="max-w-full max-h-full object-contain">
+        <button type="button" id="imagePreviewModalClose" class="absolute top-4 right-4 w-10 h-10 flex items-center justify-center rounded-full bg-white bg-opacity-20 hover:bg-opacity-40 text-white text-2xl leading-none" aria-label="关闭">×</button>
+    </div>
+
+    <!-- 个人简介弹窗：点击内容区用户头像时弹出 -->
+    <div id="profilePopupModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4" style="background: rgba(0,0,0,0.4);">
+        <div class="bg-white rounded-2xl shadow-xl max-w-md w-full max-h-[90vh] overflow-hidden flex flex-col border border-gray-200" onclick="event.stopPropagation()">
+            <div class="relative p-6 pb-4 flex-shrink-0">
+                <button type="button" id="profilePopupClose" class="absolute top-4 right-4 w-10 h-10 flex items-center justify-center rounded-full text-gray-500 hover:bg-gray-100 hover:text-gray-700 transition-colors" aria-label="关闭">×</button>
+                <div class="flex items-center gap-4 mb-6">
+                    <div id="profilePopupAvatar" class="w-16 h-16 md:w-20 md:h-20 rounded-full bg-gradient-to-br from-blue-400 to-blue-600 flex items-center justify-center text-white font-bold text-2xl flex-shrink-0 overflow-hidden"></div>
+                    <div class="flex-1 min-w-0">
+                        <h2 id="profilePopupNickname" class="text-xl font-bold text-gray-800 truncate">用户</h2>
+                    </div>
+                </div>
+                <div id="profilePopupContent" class="space-y-4 text-sm md:text-base">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="bg-gray-50 rounded-lg px-4 py-3"><p class="text-gray-500 text-xs mb-1">学校</p><p id="profilePopupSchool" class="text-gray-800 font-medium">-</p></div>
+                        <div class="bg-gray-50 rounded-lg px-4 py-3"><p class="text-gray-500 text-xs mb-1">学院</p><p id="profilePopupCollege" class="text-gray-800 font-medium">-</p></div>
+                        <div class="bg-gray-50 rounded-lg px-4 py-3"><p class="text-gray-500 text-xs mb-1">专业</p><p id="profilePopupMajor" class="text-gray-800 font-medium">-</p></div>
+                        <div class="bg-gray-50 rounded-lg px-4 py-3"><p class="text-gray-500 text-xs mb-1">性别</p><p id="profilePopupGender" class="text-gray-800 font-medium">-</p></div>
+                        <div class="bg-gray-50 rounded-lg px-4 py-3 sm:col-span-2"><p class="text-gray-500 text-xs mb-1">生日</p><p id="profilePopupBirthday" class="text-gray-800 font-medium">-</p></div>
+                    </div>
+                    <div class="bg-gray-50 rounded-lg px-4 py-3"><p class="text-gray-500 text-xs mb-1">个人简介</p><p id="profilePopupBio" class="text-gray-800 leading-relaxed whitespace-pre-wrap">-</p></div>
+                </div>
+                <div id="profilePopupAdminActions" class="mt-4 hidden"></div>
+            </div>
+            <div class="p-4 border-t border-gray-200 flex-shrink-0">
+                <button type="button" id="profilePopupBackBtn" class="w-full bg-blue-500 text-white py-3 rounded-xl font-medium hover:bg-blue-600 transition-colors">返回</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 封禁账号弹窗：二次确认 + 时长选择 -->
+    <div id="banConfirmModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4" style="background: rgba(0,0,0,0.5);">
+        <div class="bg-white rounded-2xl shadow-xl max-w-sm w-full p-6 border border-gray-200" onclick="event.stopPropagation()">
+            <p class="text-gray-800 font-medium mb-6 text-center">确定封禁该用户？</p>
+            <div class="flex gap-3">
+                <button type="button" id="banConfirmOk" class="flex-1 bg-red-500 text-white py-2 rounded-lg font-medium text-sm hover:bg-red-600">确定</button>
+                <button type="button" id="banConfirmCancel" class="flex-1 border border-gray-300 text-gray-700 py-2 rounded-lg font-medium text-sm hover:bg-gray-50">取消</button>
+            </div>
+        </div>
+    </div>
+    <div id="banUserModal" class="hidden fixed inset-0 z-50 flex items-center justify-center p-4" style="background: rgba(0,0,0,0.5);">
+        <div class="bg-white rounded-2xl shadow-xl max-w-sm w-full p-6 border border-gray-200" onclick="event.stopPropagation()">
+            <h3 class="text-lg font-bold text-gray-800 mb-4 text-center">封禁账号</h3>
+            <p class="text-sm text-gray-600 mb-4 text-center">选择封禁时长</p>
+            <div id="banDurationOptions" class="space-y-2 mb-6"></div>
+            <div class="flex gap-3">
+                <button type="button" id="banModalCancel" class="flex-1 border border-gray-300 text-gray-700 py-2 rounded-lg font-medium text-sm hover:bg-gray-50">取消</button>
             </div>
         </div>
     </div>
@@ -523,8 +626,12 @@
     <script src="./js/default-avatars.js"></script>
     <script src="./js/image-compress.js"></script>
     <script src="./js/supabase-api.js"></script>
+    <script src="./js/admin-config.js"></script>
+    <script src="./js/admin.js"></script>
+    <script src="./js/profile-popup.js"></script>
     <script src="./js/content-filter.js"></script>
     <script src="./js/home-carousel.js"></script>
+    <script src="./js/campus-news.js"></script>
     <script src="./js/schedule.js"></script>
     <script src="./js/materials.js"></script>
     <script src="./js/campus-life.js"></script>
